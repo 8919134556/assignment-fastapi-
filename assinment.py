@@ -1,6 +1,4 @@
-from uuid import UUID
 from fastapi import FastAPI
-from typing import Union
 from pydantic import BaseModel, Field
 from uuid import UUID
 import models
@@ -27,6 +25,8 @@ class Book(BaseModel):
     state : str = Field(min_length=1, max_length=100)
     pincode : int = Field()
     country: str = Field(min_length=1, max_length=100)
+    latt : float = Field()
+    long : float = Field()
 
 BOOKS = []
 
@@ -41,6 +41,8 @@ def create_address(book: Book, db: Session = Depends(get_db)):
     book_model.state = book.state
     book_model.pincode = book.pincode
     book_model.country = book.country
+    book_model.latt = book.latt
+    book_model.long = book.long
 
 
     db.add(book_model)
@@ -71,6 +73,8 @@ def update_book(book_id: int, book: Book, db: Session = Depends(get_db)):
     book_model.state = book.state
     book_model.pincode = book.pincode
     book_model.country = book.country
+    book_model.latt = book.latt
+    book_model.long = book.long
 
     db.add(book_model)
     db.commit()

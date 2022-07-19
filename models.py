@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Float, Integer, String
 from database import Base
 
 
@@ -13,3 +13,5 @@ class Books(Base):
     state = Column(String)
     pincode = Column(Integer)
     country = Column(String)
+    latt = Column(Float)
+    long = Column(Float)
